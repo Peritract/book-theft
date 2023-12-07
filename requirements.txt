@@ -1,5 +1,10 @@
+altair
 bs4
-requests
+ipykernel
+nltk
 pylint
 pytest
 python-dotenv
+pandas
+requests
+spacy

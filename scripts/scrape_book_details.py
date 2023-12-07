@@ -18,10 +18,15 @@ def scrape_book_page(link: str, headers: dict) -> dict:
     fact_sheet = soup.find("p", class_="product-description")
     description = soup.find("section", class_="book--description")
 
+    # Remove the image section inside the description
+    image_section = description.find("section")
+    if image_section:
+        image_section.extract()
+
     book = {
         "title": soup.find("h1", class_="book--title"),
         "series": soup.find("h3", class_="book--series"),
-        "description": description.find("p") if description else None
+        "description": description
     }
 
     book = {k:v.decode_contents().strip() if v else None for k,v in book.items()}
@@ -29,7 +34,7 @@ def scrape_book_page(link: str, headers: dict) -> dict:
     pages = re.search(r"(\d+) Pages", fact_sheet.text) if fact_sheet else None
     book["pages"] = pages.group(1) if pages else None
     published = re.search(r"\d{2}\/\d{2}\/\d{4}", fact_sheet.text)
-    book["published"] = published.group(0) if published else None
+    book["publication_date"] = published.group(0) if published else None
     formats = soup.find_all("h3", class_="product-format")
     book["formats"] = [x.text.strip()
                        for x in formats] if formats else None
