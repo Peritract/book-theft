@@ -8,4 +8,5 @@ python-dotenv
 pandas
 requests
 spacy
+vl-convert-python
 wordcloud

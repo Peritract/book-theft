@@ -5,6 +5,7 @@ This project scrapes a bunch of books and does not-technically-illegal stuff wit
 ## Installation
 
 - `pip3 install -r requirements.txt`
+- `python3 ./scripts/download_corpora.py`
 
 ## Setup
 
@@ -22,7 +23,7 @@ FINAL_BOOK_FILEPATH=./data/tor_books.csv
 
 The values provided above are reasonable-ish defaults.
 
-Additionally, the scripts expect the existence of a `data` folder at the project root.
+Additionally, the scripts expect the existence of both a `data` and an `output` folder at the project root.
 
 ## Data collection process
 
